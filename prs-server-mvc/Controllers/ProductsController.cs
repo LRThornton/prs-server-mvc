@@ -21,8 +21,8 @@ namespace prs_server_mvc.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var pRSDbApiContext = _context.Products.Include(p => p.Vendor);
-            return View(await pRSDbApiContext.ToListAsync());
+            var PRSDbApiContext = _context.Products.Include(p => p.Vendor);
+            return View(await PRSDbApiContext.ToListAsync());
         }
 
         // GET: Products/Details/5

@@ -21,8 +21,8 @@ namespace prs_server_mvc.Controllers
         // GET: Requests
         public async Task<IActionResult> Index()
         {
-            var pRSDbApiContext = _context.Requests.Include(r => r.User);
-            return View(await pRSDbApiContext.ToListAsync());
+            var PRSDbApiContext = _context.Requests.Include(r => r.User);
+            return View(await PRSDbApiContext.ToListAsync());
         }
 
         // GET: Requests/Details/5
@@ -155,5 +155,5 @@ namespace prs_server_mvc.Controllers
         {
             return _context.Requests.Any(e => e.Id == id);
         }
-    }
+    }                //LRT
 }

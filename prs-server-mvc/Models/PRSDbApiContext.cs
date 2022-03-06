@@ -23,9 +23,7 @@ namespace prs_server_mvc.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
 
-      
-
-        
+              
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +32,9 @@ namespace prs_server_mvc.Models
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product");
+
+                entity.HasIndex(e => e.PartNbr, "IX_Products_PartNbr")
+                    .IsUnique();
 
                 entity.HasIndex(e => e.VendorId, "IX_Product_VendorId");
 
@@ -110,6 +111,9 @@ namespace prs_server_mvc.Models
             {
                 entity.ToTable("User");
 
+                entity.HasIndex(e => e.Username, "IX_Users_Username")
+                    .IsUnique();
+
                 entity.Property(e => e.Email).HasMaxLength(255);
 
                 entity.Property(e => e.Firtsname)
@@ -133,6 +137,10 @@ namespace prs_server_mvc.Models
 
             modelBuilder.Entity<Vendor>(entity =>
             {
+
+                entity.HasIndex(e => e.Code, "IX_Vendors_Code")
+                   .IsUnique();
+
                 entity.Property(e => e.Address)
                     .IsRequired()
                     .HasMaxLength(30);
